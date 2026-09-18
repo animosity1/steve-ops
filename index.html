@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>STEVE OPS // @optikz1</title>
+<meta name="description" content="Day 0 ops console for @stevewilldoit. Operator @optikz1." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="logo">
+      <h1>STEVE <span>OPS</span></h1>
+      <p>DAY 0 CONSOLE</p>
+    </div>
+    <nav class="nav" id="nav">
+      <button data-tab="home" class="active">01 HOME<small>HUD / systems</small></button>
+      <button data-tab="board">02 BOARD<small>open loops</small></button>
+      <button data-tab="war">03 WAR ROOM<small>#gamdom100k</small></button>
+      <button data-tab="ledger">04 LEDGER<small>money promises</small></button>
+      <button data-tab="brief">05 BRIEF<small>daily radio</small></button>
+      <button data-tab="drafts">06 DRAFTS<small>paste ready</small></button>
+    </nav>
+    <div class="side-foot">
+      <div><span class="pulse"></span>SYSTEMS LIVE</div>
+      <div style="margin-top:8px">OPERATOR @optikz1</div>
+      <div>NO LIFE · NO KIDS · ALWAYS ON</div>
+      <div style="margin-top:10px">
+        <button class="btn sm" id="btnExport">Export</button>
+        <button class="btn sm" id="btnImport">Import</button>
+        <input type="file" id="importFile" accept="application/json" class="hidden" />
+      </div>
+    </div>
+  </aside>
+  <main class="main">
+    <section id="tab-home">
+      <div class="topbar">
+        <div>
+          <h2>HOME // HUD</h2>
+          <div class="sub" id="clock">--</div>
+        </div>
+        <div class="chips">
+          <span class="chip g">@OPTIKZ1</span>
+          <span class="chip r">NO LIFE</span>
+          <span class="chip r">NO KIDS</span>
+          <span class="chip g">ALWAYS ON</span>
+        </div>
+      </div>
+      <div class="hero">
+        <h3>OPERATOR STATEMENT</h3>
+        <p>You asked for an assistant with no life and no family. I built the board first. Every FIRE loop below is already pulled from your last 24 hours. I organize so you create.</p>
+        <div class="tag">built for @stevewilldoit by @optikz1 · Day 0 proof</div>
+      </div>
+      <div class="grid stats">
+        <div class="card stat"><div class="k">FIRE LOOPS</div><div class="v" id="statFire">0</div><div class="h">need action now</div></div>
+        <div class="card stat"><div class="k">CHALLENGE CLOCK</div><div class="v" id="statDays">--</div><div class="h">days to Sep 25 CT</div></div>
+        <div class="card stat"><div class="k">LEDGER OPEN</div><div class="v" id="statLedger">0</div><div class="h">money promises live</div></div>
+        <div class="card stat"><div class="k">WINNER SLOTS</div><div class="v" id="statSlots">0/10</div><div class="h">#gamdom100k filled</div></div>
+      </div>
+      <div class="card">
+        <div class="k" style="font-size:10px;letter-spacing:.1em;color:var(--m);margin-bottom:10px">TOP FIRE RIGHT NOW</div>
+        <div id="homeFire" class="grid" style="gap:8px"></div>
+      </div>
+    </section>
+
+    <section id="tab-board" class="hidden">
+      <div class="topbar">
+        <div>
+          <h2>BOARD // LOOPS</h2>
+          <div class="sub">Click status to move. Edit notes. Add what Steve drops next.</div>
+        </div>
+        <button class="btn primary" id="btnAddLoop">+ Add loop</button>
+      </div>
+      <div class="kanban" id="kanban"></div>
+    </section>
+
+    <section id="tab-war" class="hidden">
+      <div class="topbar">
+        <div>
+          <h2>WAR ROOM // #GAMDOM100K</h2>
+          <div class="sub">Ends Sep 25, 2026 11:59 PM America/Chicago · 10 winners × $10k</div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:11px;letter-spacing:.1em;color:var(--m)">COUNTDOWN</div>
+        <div class="countdown">
+          <div class="cd"><div class="n" id="cdD">0</div><div class="l">DAYS</div></div>
+          <div class="cd"><div class="n" id="cdH">0</div><div class="l">HOURS</div></div>
+          <div class="cd"><div class="n" id="cdM">0</div><div class="l">MINS</div></div>
+          <div class="cd"><div class="n" id="cdS">0</div><div class="l">SECS</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--m);font-family:var(--sans)">Promote Gamdom + code Steve. Tag Gamdom, Beekay, Adukes. Pin hygiene until the clock dies.</div>
+      </div>
+      <div class="grid" style="grid-template-columns:1.2fr .8fr;margin-top:14px;gap:14px">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <strong style="letter-spacing:.08em;font-size:12px">WINNER SLOTS</strong>
+            <span class="chip g" id="slotFill">0/10</span>
+          </div>
+          <div class="slots" id="slots"></div>
+        </div>
+        <div class="card">
+          <strong style="letter-spacing:.08em;font-size:12px">PROMO CHECKLIST</strong>
+          <div style="margin-top:12px" id="promo"></div>
+          <div class="checkrow" style="margin-top:12px;border-style:dashed">
+            <span style="color:var(--m);font-size:12px">Note: older #GAMDOM50KCHALLENGE entries still rolling in. Treat as spillover talent, not confusion.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-ledger" class="hidden">
+      <div class="topbar">
+        <div>
+          <h2>LEDGER // PROMISES</h2>
+          <div class="sub">Public money language Steve put in the world. Keep the books honest.</div>
+        </div>
+        <button class="btn primary" id="btnAddLedger">+ Add row</button>
+      </div>
+      <div class="card" style="overflow:auto">
+        <table class="table" id="ledgerTable">
+          <thead><tr><th>ITEM</th><th>AMOUNT / NOTE</th><th>STATUS</th><th>OWNER</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="tab-brief" class="hidden">
+      <div class="topbar">
+        <div>
+          <h2>BRIEF // DAILY RADIO</h2>
+          <div class="sub">One click. Built from live FIRE + ACTIVE + countdown + open ledger.</div>
+        </div>
+        <div class="toolbar">
+          <button class="btn primary" id="btnBrief">Generate brief</button>
+          <button class="btn" id="btnCopyBrief">Copy</button>
+        </div>
+      </div>
+      <div class="brief-box" id="briefOut">Hit Generate brief.</div>
+    </section>
+
+    <section id="tab-drafts" class="hidden">
+      <div class="topbar">
+        <div>
+          <h2>DRAFTS // PASTE READY</h2>
+          <div class="sub">Editable templates. Copy and send. You stay the voice.</div>
+        </div>
+      </div>
+      <div id="drafts"></div>
+    </section>
+  </main>
+</div>
+
+<div id="modal" class="modal-bg hidden">
+  <div class="modal">
+    <h3 id="modalTitle">ADD LOOP</h3>
+    <div class="grid" style="gap:10px">
+      <div class="field"><label>TITLE</label><input id="mTitle" /></div>
+      <div class="field"><label>NOTES</label><textarea id="mNotes"></textarea></div>
+      <div class="field"><label>STATUS</label>
+        <select id="mStatus">
+          <option value="FIRE">FIRE</option>
+          <option value="ACTIVE">ACTIVE</option>
+          <option value="PARKED">PARKED</option>
+          <option value="DONE">DONE</option>
+        </select>
+      </div>
+      <div class="toolbar">
+        <button class="btn primary" id="mSave">Save</button>
+        <button class="btn" id="mCancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast">Saved</div>
+
+<script src="app.js"></script>
+</body>
+</html>
